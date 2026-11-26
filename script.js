@@ -1,62 +1,70 @@
 
-async function searchTech() {
-  const input = document.getElementById("searchInput");
-  const results = document.getElementById("searchResults");
-  const search = input.value.trim();
+const searchInput = document.getElementById("searchInput");
+const searchForm = document.getElementById("searchForm");
+const searchResults = document.getElementById("searchResults");
 
-  results.replaceChildren();
+// Search Wikipedia for technology topics
+async function searchTech(query) {
+  const search = query.trim();
 
-  if (!search) {
-    results.textContent = "Please type something to search!";
-    return;
-  }
+  if (!search) return;
 
-  results.textContent = "Searching TechNova... 🔎";
+  searchInput.value = search;
+  searchResults.replaceChildren();
+
+  const loading = document.createElement("p");
+  loading.textContent = "Searching the world of technology...";
+  searchResults.appendChild(loading);
 
   try {
-    const searchURL =
+    const url =
       "https://en.wikipedia.org/w/api.php?action=query" +
-      "&list=search" +
-      "&srsearch=" + encodeURIComponent(search) +
-      "&srlimit=5" +
-      "&format=json&origin=*";
+      "&list=search&srsearch=" +
+      encodeURIComponent(search) +
+      "&srlimit=6&format=json&origin=*";
 
-    const response = await fetch(searchURL);
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error("Search request failed");
+      throw new Error("Search failed");
     }
 
     const data = await response.json();
     const articles = data.query.search;
 
-    results.replaceChildren();
+    searchResults.replaceChildren();
 
     if (articles.length === 0) {
-      results.textContent = "No results found. Try another search.";
+      const message = document.createElement("p");
+      message.textContent = "No results found. Try another search.";
+      searchResults.appendChild(message);
       return;
     }
 
+    const heading = document.createElement("h2");
+    heading.textContent = "Search results for: " + search;
+    searchResults.appendChild(heading);
+
     for (const article of articles) {
-      const card = document.createElement("div");
+      const card = document.createElement("article");
       card.className = "result-card";
 
-      const heading = document.createElement("h3");
-      heading.textContent = article.title;
+      const title = document.createElement("h3");
+      title.textContent = article.title;
 
       const description = document.createElement("p");
       description.textContent = "Loading information...";
 
       const link = document.createElement("a");
-      link.textContent = "Read more on Wikipedia";
+      link.textContent = "Read more ↗";
       link.href =
         "https://en.wikipedia.org/wiki/" +
         encodeURIComponent(article.title.replaceAll(" ", "_"));
       link.target = "_blank";
       link.rel = "noopener noreferrer";
 
-      card.append(heading, description, link);
-      results.appendChild(card);
+      card.append(title, description, link);
+      searchResults.appendChild(card);
 
       try {
         const summaryURL =
@@ -68,27 +76,47 @@ async function searchTech() {
         if (summaryResponse.ok) {
           const summary = await summaryResponse.json();
           description.textContent =
-            summary.extract || "No summary available.";
+            summary.extract || "Open the article to learn more.";
+
+          if (summary.thumbnail && summary.thumbnail.source) {
+            const picture = document.createElement("img");
+            picture.src = summary.thumbnail.source;
+            picture.alt = article.title;
+            picture.className = "result-image";
+            picture.loading = "lazy";
+            card.insertBefore(picture, title);
+          }
         } else {
-          description.textContent =
-            "Open the article to learn more.";
+          description.textContent = "Open the article to learn more.";
         }
       } catch {
-        description.textContent =
-          "Open the article to learn more.";
+        description.textContent = "Open the article to learn more.";
       }
     }
+
   } catch (error) {
-    results.textContent =
-      "Something went wrong. Please try again.";
+    searchResults.replaceChildren();
+
+    const message = document.createElement("p");
+    message.textContent =
+      "Search is temporarily unavailable. Please try again.";
+    searchResults.appendChild(message);
   }
 }
 
-document.getElementById("searchInput").addEventListener(
-  "keydown",
-  function(event) {
-    if (event.key === "Enter") {
-      searchTech();
-    }
-  }
-);
+// Search button
+searchForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  searchTech(searchInput.value);
+});
+
+// Popular searches and category buttons
+document.querySelectorAll("[data-search]").forEach(button => {
+  button.addEventListener("click", function() {
+    searchTech(this.dataset.search);
+
+    document.getElementById("discover").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});
