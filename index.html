@@ -4,64 +4,146 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechNova | Explore Technology</title>
+  <meta name="description" content="Explore technology, companies, devices, AI and gaming with TechNova.">
+  <title>TechNova — Discover What's Next</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>TechNova</h1>
-    <p>Discover. Explore. Understand Technology.</p>
+  <header class="navbar">
+    <a href="#" class="logo">TECH<span>NOVA</span></a>
+    <nav>
+      <a href="#discover">Discover</a>
+      <a href="#trending">Trending</a>
+      <a href="#categories">Categories</a>
+    </nav>
+    <a href="#discover" class="nav-button">Explore Tech ↗</a>
   </header>
 
   <main>
     <section class="hero">
-      <h2>Explore the World of Technology</h2>
-      <p>Discover companies, artificial intelligence, gaming and more.</p>
+      <div class="hero-tag">✦ YOUR WORLD OF TECHNOLOGY</div>
 
-      <div class="search-box">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search Apple, Samsung, Claude AI..."
-        >
-        <button onclick="searchTech()">Search</button>
+      <h1>Discover the<br>Future of <span>Technology.</span></h1>
+
+      <p>
+        Explore the companies, devices, innovations and ideas
+        shaping tomorrow.
+      </p>
+
+      <form class="search-box" id="searchForm">
+        <span>⌕</span>
+        <input id="searchInput" type="search"
+          placeholder="Search Apple, iPhone, NVIDIA, Claude AI..."
+          autocomplete="off">
+        <button type="submit">Search ↗</button>
+      </form>
+
+      <div class="popular-searches">
+        <span>POPULAR:</span>
+        <button type="button" data-search="Apple">Apple</button>
+        <button type="button" data-search="NVIDIA">NVIDIA</button>
+        <button type="button" data-search="Artificial intelligence">AI</button>
+        <button type="button" data-search="Samsung">Samsung</button>
       </div>
-
-      <div id="searchResults"></div>
     </section>
 
-    <section class="categories">
-      <h2>Explore Categories</h2>
+    <section id="discover" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">EXPLORE THE UNKNOWN</span>
+          <h2>Discover TechNova</h2>
+        </div>
+        <span class="section-note">Technology, all in one place.</span>
+      </div>
+
+      <div id="searchResults" class="results"></div>
+    </section>
+
+    <section id="trending" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">WHAT'S HAPPENING</span>
+          <h2>Popular Searches</h2>
+        </div>
+      </div>
+
+      <div class="trending-grid">
+        <button data-search="Artificial intelligence" class="trend-card">
+          <span>01 / AI</span>
+          <strong>Artificial Intelligence</strong>
+          <small>Explore the world of AI ↗</small>
+        </button>
+
+        <button data-search="Apple iPhone" class="trend-card">
+          <span>02 / DEVICES</span>
+          <strong>Smartphones</strong>
+          <small>Discover modern devices ↗</small>
+        </button>
+
+        <button data-search="NVIDIA" class="trend-card">
+          <span>03 / HARDWARE</span>
+          <strong>Computer Hardware</strong>
+          <small>Explore what's inside ↗</small>
+        </button>
+      </div>
+    </section>
+
+    <section id="categories" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">FIND YOUR INTEREST</span>
+          <h2>Explore Categories</h2>
+        </div>
+      </div>
 
       <div class="category-grid">
-        <div class="category">
-          <h3>🏢 Tech Companies</h3>
-          <p>Apple, Samsung, Google and Microsoft.</p>
-        </div>
+        <button data-search="Technology companies" class="category-card">
+          <span>🏢</span>
+          <strong>Companies</strong>
+          <small>Apple, Google, Samsung</small>
+        </button>
 
-        <div class="category">
-          <h3>🤖 Artificial Intelligence</h3>
-          <p>ChatGPT, Claude, Gemini and more.</p>
-        </div>
+        <button data-search="Smartphone" class="category-card">
+          <span>📱</span>
+          <strong>Devices</strong>
+          <small>Phones, tablets, laptops</small>
+        </button>
 
-        <div class="category">
-          <h3>🎮 Gaming</h3>
-          <p>PlayStation, Xbox, Roblox and PC gaming.</p>
-        </div>
+        <button data-search="Artificial intelligence" class="category-card">
+          <span>🤖</span>
+          <strong>Artificial Intelligence</strong>
+          <small>AI tools and innovations</small>
+        </button>
 
-        <div class="category">
-          <h3>💻 Computers</h3>
-          <p>Processors, laptops, graphics cards and hardware.</p>
-        </div>
+        <button data-search="Video game" class="category-card">
+          <span>🎮</span>
+          <strong>Gaming</strong>
+          <small>Consoles and games</small>
+        </button>
+
+        <button data-search="Computer hardware" class="category-card">
+          <span>💻</span>
+          <strong>Hardware</strong>
+          <small>CPUs, GPUs and more</small>
+        </button>
+
+        <button data-search="Internet technology" class="category-card">
+          <span>🌐</span>
+          <strong>Internet</strong>
+          <small>Websites and networks</small>
+        </button>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 TechNova. Explore the future.</p>
+    <a href="#" class="logo">TECH<span>NOVA</span></a>
+    <p>Discover. Explore. Understand.</p>
+    <small>© 2026 TechNova. Made for curious minds.</small>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
