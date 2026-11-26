@@ -1,23 +1,66 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechNova</title>
+  <title>TechNova | Explore Technology</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
     <h1>TechNova</h1>
-    <p>Explore. Create. Innovate.</p>
+    <p>Discover. Explore. Understand Technology.</p>
   </header>
 
   <main>
-    <h2>Welcome to TechNova</h2>
-    <p>Your home for technology, creativity and innovation.</p>
-    <button onclick="showMessage()">Explore TechNova</button>
-    <p id="message"></p>
+    <section class="hero">
+      <h2>Explore the World of Technology</h2>
+      <p>Discover companies, artificial intelligence, gaming and more.</p>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search Apple, Samsung, Claude AI..."
+        >
+        <button onclick="searchTech()">Search</button>
+      </div>
+
+      <div id="searchResults"></div>
+    </section>
+
+    <section class="categories">
+      <h2>Explore Categories</h2>
+
+      <div class="category-grid">
+        <div class="category">
+          <h3>🏢 Tech Companies</h3>
+          <p>Apple, Samsung, Google and Microsoft.</p>
+        </div>
+
+        <div class="category">
+          <h3>🤖 Artificial Intelligence</h3>
+          <p>ChatGPT, Claude, Gemini and more.</p>
+        </div>
+
+        <div class="category">
+          <h3>🎮 Gaming</h3>
+          <p>PlayStation, Xbox, Roblox and PC gaming.</p>
+        </div>
+
+        <div class="category">
+          <h3>💻 Computers</h3>
+          <p>Processors, laptops, graphics cards and hardware.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <p>© 2026 TechNova. Explore the future.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
